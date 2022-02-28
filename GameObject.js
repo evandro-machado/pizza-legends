@@ -12,6 +12,8 @@ class GameObject {
 
         this.behaviorLoop = config.behaviorLoop || [];
         this.behaviorLoopIndex = 0;
+
+        this.talking = config.talking || [];
     }
 
     update() {
@@ -31,7 +33,7 @@ class GameObject {
 
     async doBehaviorEvent(map) {
 
-        if(map.isCuscenePlaying || this.behaviorLoop.length === 0){
+        if(map.isCutscenePlaying || this.behaviorLoop.length === 0 || this.isStanding){
             return;
         } 
 
