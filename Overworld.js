@@ -71,8 +71,9 @@ class Overworld {
         this.directionInput.direction;
         this.startGameLoop();
 
-        // this.map.startCutscene([
-        //     {type: "changeMap", map: "DemoRoom"}
-        // ]);
+        this.map.startCutscene([
+            {type: "battle"}
+            // {type: "changeMap", map: "DemoRoom"}
+        ]);
     }
 }
