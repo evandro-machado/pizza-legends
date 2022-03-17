@@ -57,6 +57,10 @@ class BattleEvent {
         //Wait a little bit
         await utils.wait(600);
 
+        //Update team components
+        this.battle.playerTeam.update();
+        this.battle.enemyTeam.update();
+
         //Stop blinking
         target.pizzaElement.classList.remove("battle-damage-blink");
 
@@ -67,6 +71,7 @@ class BattleEvent {
         const menu = new SubmissionMenu({
             caster: this.event.caster,
             enemy: this.event.enemy,
+            items: this.battle.items,
             onComplete: submission => {
                 //submission {what move to use, who to use it on}
                 resolve(submission);
