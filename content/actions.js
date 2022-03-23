@@ -9,6 +9,7 @@ window.Actions = {
     },
     saucyStatus: {
         name: "Tomato Squeeze!",
+        description: "Crazy!",
         targetType: "friendly",
         success: [
             { type: "textMessage", text: "{CASTER} uses {ACTION}!" },

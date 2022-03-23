@@ -25,6 +25,6 @@
 .Team [data-dead="true"] .dead-pizza {
     display: block;
 }
-.Team [data-dead="true"] .active-pizza-indicator {
+.Team [data-active="true"] .active-pizza-indicator {
     display:block;
 }
