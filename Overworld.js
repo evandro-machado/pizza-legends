@@ -30,9 +30,11 @@ class Overworld {
 
             this.map.drawUpperImage(this.ctx, cameraPerson);
 
-            requestAnimationFrame(() => {
-                step();
-            });
+            if(!this.map.isPaused){
+                requestAnimationFrame(() => {
+                    step();
+                });    
+            }
         }
         step();
     }
@@ -42,11 +44,18 @@ class Overworld {
             //Is there a porson here to talk to?
             this.map.checkForActionCutscene();
         });
+        new KeyPressListener("Escape", () => {
+            if(!this.map.isCutscenePlaying) {
+                this.map.startCutscene([
+                    {type: "pause"}
+                ]);
+            }
+        });
     }
 
     bindHeroPositionCheck() {
         document.addEventListener("PersonWalkingComplete", e => {
-            if(e.detail.whoId === "hero"){
+            if (e.detail.whoId === "hero") {
                 console.log("new hero position");
                 //Hero's position has changed
                 this.map.checkForFootstepCutscene();
@@ -61,7 +70,10 @@ class Overworld {
     }
 
     init() {
-        this.startMap(window.OverworldMaps.Kitchen);
+        this.hud = new Hud();
+        this.hud.init(document.querySelector(".game-container"));
+
+        this.startMap(window.OverworldMaps.DemoRoom);
 
         this.bindActionInput();
         this.bindHeroPositionCheck();
@@ -71,9 +83,9 @@ class Overworld {
         this.directionInput.direction;
         this.startGameLoop();
 
-        this.map.startCutscene([
-            {type: "battle"}
-            // {type: "changeMap", map: "DemoRoom"}
-        ]);
+        // this.map.startCutscene([
+        //     {type: "battle", enemyId: "beth"}
+        //     // {type: "changeMap", map: "DemoRoom"}
+        // ]);
     }
 }
